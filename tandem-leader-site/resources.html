@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resources — Tandem Leader</title>
+  <meta name="description" content="Free leadership resources, articles, and tools for church leaders and Christian nonprofit leaders from Tandem Leader." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* ---- Assessment Feature Block ---- */
+    .assessment-feature {
+      background: var(--dark-3);
+      border-top: 4px solid var(--orange);
+      padding: 72px 0;
+      margin-bottom: 0;
+    }
+    .assessment-feature__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .assessment-feature__content h2 { font-size: clamp(2.2rem, 4vw, 3.4rem); margin-bottom: 20px; }
+    .assessment-feature__content p { color: var(--lgray); font-size: 1.02rem; margin-bottom: 16px; line-height: 1.75; }
+    .assessment-feature__meta {
+      display: flex; gap: 28px; flex-wrap: wrap;
+      margin: 28px 0 36px;
+    }
+    .assessment-feature__meta-item {
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .assessment-feature__meta-item strong {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: 1.5rem; color: var(--orange);
+    }
+    .assessment-feature__meta-item span { font-size: 0.8rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.1em; }
+
+    .assessment-feature__preview {
+      background: var(--dark-4);
+      padding: 36px;
+      position: relative;
+    }
+    .assessment-feature__preview-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 0.72rem;
+      text-transform: uppercase; letter-spacing: 0.16em;
+      color: var(--orange); margin-bottom: 20px;
+    }
+    .preview-question {
+      font-size: 1rem; color: var(--white);
+      margin-bottom: 16px; font-weight: 500; line-height: 1.5;
+    }
+    .preview-options { display: flex; flex-direction: column; gap: 8px; }
+    .preview-option {
+      background: var(--dark-3);
+      border: 1px solid var(--border);
+      padding: 10px 16px;
+      font-size: 0.88rem;
+      color: var(--lgray);
+      cursor: default;
+      transition: border-color 0.2s;
+    }
+    .preview-option.selected {
+      border-color: var(--orange);
+      color: var(--white);
+    }
+    .preview-cta {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem; color: var(--gray);
+      text-align: center;
+    }
+    .preview-dots { display: flex; justify-content: center; gap: 6px; margin-top: 16px; }
+    .preview-dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
+    .preview-dots span.active { background: var(--orange); }
+
+    /* ---- Topic Tags ---- */
+    .topic-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 48px; }
+    .topic-tag {
+      background: var(--dark-3);
+      border: 1px solid var(--border);
+      padding: 7px 16px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600; font-size: 0.78rem;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--lgray); cursor: pointer;
+      transition: all 0.2s;
+    }
+    .topic-tag:hover, .topic-tag.active { background: var(--orange); border-color: var(--orange); color: var(--white); }
+
+    /* ---- Blog Grid ---- */
+    .blog-section__header { margin-bottom: 40px; }
+    .blog-section__header h2 { font-size: clamp(2rem, 3.5vw, 2.8rem); margin-bottom: 12px; }
+    .blog-section__header p { color: var(--lgray); font-size: 1rem; }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .blog-card {
+      background: var(--dark-2);
+      display: flex; flex-direction: column;
+      transition: background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-card:hover { background: var(--dark-3); }
+    .blog-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px; background: var(--orange);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .blog-card:hover::after { transform: scaleX(1); }
+    .blog-card__img {
+      aspect-ratio: 16/9;
+      background: var(--dark-3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem;
+      opacity: 0.6;
+      border-bottom: 1px solid var(--border);
+    }
+    .blog-card__body { padding: 28px 24px; flex: 1; display: flex; flex-direction: column; }
+    .blog-card__cat {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 0.7rem;
+      text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--orange); margin-bottom: 10px;
+    }
+    .blog-card h3 {
+      font-size: 1.2rem; margin-bottom: 12px; line-height: 1.3;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; text-transform: uppercase; letter-spacing: 0.02em;
+    }
+    .blog-card p { font-size: 0.88rem; color: var(--lgray); line-height: 1.65; flex: 1; margin-bottom: 20px; }
+    .blog-card__footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 16px; border-top: 1px solid var(--border);
+    }
+    .blog-card__read {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 0.8rem;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--orange);
+    }
+    .blog-card__read::after { content: ' →'; }
+    .blog-card__time { font-size: 0.78rem; color: var(--gray); }
+
+    /* ---- Coming Soon Badge ---- */
+    .badge-coming-soon {
+      display: inline-block;
+      background: var(--dark-4);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600; font-size: 0.68rem;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--gray);
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    /* ---- Newsletter Strip ---- */
+    .newsletter {
+      background: var(--dark-2);
+      padding: 60px 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .newsletter h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin-bottom: 10px; }
+    .newsletter p { color: var(--lgray); max-width: 480px; margin: 0 auto 28px; font-size: 0.98rem; }
+    .newsletter__form {
+      display: flex; gap: 0; max-width: 440px; margin: 0 auto;
+    }
+    .newsletter__form input {
+      flex: 1;
+      background: var(--dark-3);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-right: none;
+      color: var(--white);
+      padding: 14px 18px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+    }
+    .newsletter__form input::placeholder { color: var(--gray); }
+    .newsletter__form input:focus { border-color: var(--orange); }
+    .newsletter__form button {
+      background: var(--orange);
+      color: var(--white);
+      border: none;
+      padding: 14px 24px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 0.88rem;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      cursor: pointer; white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .newsletter__form button:hover { background: var(--orange-d); }
+    .newsletter__note { font-size: 0.78rem; color: var(--gray); margin-top: 12px; }
+
+    @media (max-width: 900px) {
+      .assessment-feature__inner { grid-template-columns: 1fr; gap: 40px; }
+      .blog-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .blog-grid { grid-template-columns: 1fr; }
+      .newsletter__form { flex-direction: column; }
+      .newsletter__form input { border-right: 1px solid rgba(255,255,255,0.12); border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo">Tandem<span>Leader</span></a>
+        <div class="nav__links">
+          <a href="solutions.html">Solutions</a>
+          <a href="resources.html" class="active">Resources</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="contact.html" class="btn btn--primary btn--sm nav__cta">Start the Conversation</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <span class="label">Free Resources</span>
+      <div class="orange-rule orange-rule--center" style="margin-top:16px;"></div>
+      <h1>Tools &amp; Insights for<br />Growth-Minded Leaders</h1>
+      <p>Practical articles, assessments, and frameworks to help you lead sharper, build stronger teams, and make greater Kingdom impact.</p>
+    </div>
+  </div>
+
+  <!-- ASSESSMENT FEATURE -->
+  <section class="assessment-feature">
+    <div class="container">
+      <div class="assessment-feature__inner">
+        <div class="assessment-feature__content">
+          <span class="label">Free Assessment</span>
+          <div class="orange-rule" style="margin-top:16px;"></div>
+          <h2>How Sharp Is Your Leadership?</h2>
+          <p>Most leaders don't know what they don't know. The Ministry Leadership Health Check is a free 10-question diagnostic that reveals your leadership strengths and surfaces the gaps that may be limiting your team's effectiveness.</p>
+          <p>You'll get a personalized score across four key areas — and a clear picture of where to focus next.</p>
+          <div class="assessment-feature__meta">
+            <div class="assessment-feature__meta-item">
+              <strong>10</strong>
+              <span>Questions</span>
+            </div>
+            <div class="assessment-feature__meta-item">
+              <strong>~5</strong>
+              <span>Minutes</span>
+            </div>
+            <div class="assessment-feature__meta-item">
+              <strong>Free</strong>
+              <span>Always</span>
+            </div>
+          </div>
+          <a href="assessment.html" class="btn btn--primary">Take the Assessment →</a>
+        </div>
+
+        <div class="assessment-feature__preview">
+          <div class="assessment-feature__preview-label">Preview — Question 3 of 10</div>
+          <p class="preview-question">How clearly can your entire team articulate your church's vision and mission right now?</p>
+          <div class="preview-options">
+            <div class="preview-option">Everyone could say it word for word</div>
+            <div class="preview-option selected">Most could describe it generally</div>
+            <div class="preview-option">Some could, some couldn't</div>
+            <div class="preview-option">We haven't clearly defined it yet</div>
+          </div>
+          <div class="preview-dots">
+            <span class="active"></span><span class="active"></span><span class="active"></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div class="preview-cta">Take the full assessment — free, no email required to start</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG SECTION -->
+  <section class="section">
+    <div class="container">
+      <div class="blog-section__header">
+        <span class="label">Articles &amp; Insights</span>
+        <div class="orange-rule" style="margin-top:16px;"></div>
+        <h2>Leadership Thinking for<br />Kingdom-Focused Leaders</h2>
+        <p>Practical articles on leadership, church health, team culture, and organizational strategy.</p>
+      </div>
+
+      <div class="topic-tags">
+        <div class="topic-tag active">All</div>
+        <div class="topic-tag">Leadership</div>
+        <div class="topic-tag">Team Health</div>
+        <div class="topic-tag">Strategy</div>
+        <div class="topic-tag">Church Operations</div>
+        <div class="topic-tag">Personal Growth</div>
+      </div>
+
+      <div class="blog-grid">
+
+        <a href="#" class="blog-card" style="text-decoration:none;">
+          <div class="blog-card__img">✏️</div>
+          <div class="blog-card__body">
+            <div class="blog-card__cat">Leadership <span class="badge-coming-soon">Coming Soon</span></div>
+            <h3>5 Signs Your Leadership Team Is Misaligned</h3>
+            <p>Misalignment rarely announces itself. It hides in repeated miscommunications, slow decision-making, and quiet frustration — until it's too late. Here's what to look for.</p>
+            <div class="blog-card__footer">
+              <span class="blog-card__read">Read Article</span>
+              <span class="blog-card__time">7 min read</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="blog-card" style="text-decoration:none;">
+          <div class="blog-card__img">⚔️</div>
+          <div class="blog-card__body">
+            <div class="blog-card__cat">Personal Growth <span class="badge-coming-soon">Coming Soon</span></div>
+            <h3>The Danger of Dull Leaders: Why Sharpening Matters</h3>
+            <p>Ecclesiastes 10:10 isn't just ancient wisdom — it's a leadership principle that applies directly to your church staff, your elder board, and your own daily habits.</p>
+            <div class="blog-card__footer">
+              <span class="blog-card__read">Read Article</span>
+              <span class="blog-card__time">5 min read</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="blog-card" style="text-decoration:none;">
+          <div class="blog-card__img">🏥</div>
+          <div class="blog-card__body">
+            <div class="blog-card__cat">Strategy <span class="badge-coming-soon">Coming Soon</span></div>
+            <h3>Prescription Without Diagnosis: Why Most Church Consulting Fails</h3>
+            <p>Most consulting relationships fail not because the advice is bad — but because the diagnosis was skipped. Here's what a real organizational assessment should look like.</p>
+            <div class="blog-card__footer">
+              <span class="blog-card__read">Read Article</span>
+              <span class="blog-card__time">6 min read</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="blog-card" style="text-decoration:none;">
+          <div class="blog-card__img">🧱</div>
+          <div class="blog-card__body">
+            <div class="blog-card__cat">Team Health <span class="badge-coming-soon">Coming Soon</span></div>
+            <h3>How to Build a Healthy Ministry Team Culture From Scratch</h3>
+            <p>Culture isn't what you put on the wall — it's what you tolerate, model, and reward every day. Here's a framework for intentionally building a culture that lasts.</p>
+            <div class="blog-card__footer">
+              <span class="blog-card__read">Read Article</span>
+              <span class="blog-card__time">8 min read</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="blog-card" style="text-decoration:none;">
+          <div class="blog-card__img">🎯</div>
+          <div class="blog-card__body">
+            <div class="blog-card__cat">Church Operations <span class="badge-coming-soon">Coming Soon</span></div>
+            <h3>The 4 Pillars Every Thriving Church Organization Is Built On</h3>
+            <p>Structure, Systems, Culture, and People — when all four are aligned and healthy, everything else works. When one is weak, the whole organization feels it.</p>
+            <div class="blog-card__footer">
+              <span class="blog-card__read">Read Article</span>
+              <span class="blog-card__time">6 min read</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="blog-card" style="text-decoration:none;">
+          <div class="blog-card__img">📞</div>
+          <div class="blog-card__body">
+            <div class="blog-card__cat">Leadership <span class="badge-coming-soon">Coming Soon</span></div>
+            <h3>Why Every Great Leader Has a Coach — And Why You Should Too</h3>
+            <p>Coaching isn't for leaders who are struggling. It's for leaders who are serious. Here's what a great coaching relationship actually looks like — and what it produces.</p>
+            <div class="blog-card__footer">
+              <span class="blog-card__read">Read Article</span>
+              <span class="blog-card__time">5 min read</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter">
+    <div class="container">
+      <span class="label">Stay Sharp</span>
+      <div class="orange-rule orange-rule--center" style="margin-top:12px;"></div>
+      <h2>Leadership Insights, Delivered.</h2>
+      <p>Practical articles and tools for church leaders — straight to your inbox. No fluff, no spam. Unsubscribe anytime.</p>
+      <form name="newsletter" method="POST" data-netlify="true" class="newsletter__form">
+        <input type="hidden" name="form-name" value="newsletter" />
+        <input type="email" name="email" placeholder="your@email.com" required />
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="newsletter__note">We respect your inbox. Unsubscribe anytime.</p>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="container">
+      <div class="cta-banner__inner">
+        <span class="label">Ready to Go Deeper?</span>
+        <div class="orange-rule orange-rule--center" style="margin-top:16px;"></div>
+        <h2>Resources Are a Start.<br />Coaching Is the Work.</h2>
+        <p>Articles sharpen your thinking. A coaching relationship sharpens your leadership. Let's talk about what that could look like for you.</p>
+        <div class="cta-banner__btns">
+          <a href="contact.html" class="btn btn--primary">Book a Discovery Call</a>
+          <a href="solutions.html" class="btn btn--outline">See Our Solutions</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <div class="footer__logo">Tandem<span>Leader</span></div>
+          <p class="footer__tagline">Strengthening Leaders and Sharpening Organizations for Greater Kingdom Impact.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Solutions</h4>
+          <ul>
+            <li><a href="solutions.html#whetstone">Whetstone</a></li>
+            <li><a href="solutions.html#honing">Honing</a></li>
+            <li><a href="solutions.html#spark">Spark</a></li>
+            <li><a href="solutions.html#xp-retainer">Executive Pastor on Retainer</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="resources.html">All Resources</a></li>
+            <li><a href="assessment.html">Leadership Assessment</a></li>
+            <li><a href="resources.html">Articles</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Thomas</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 Tandem Leader. All rights reserved.</span>
+        <p class="footer__scripture">"Iron sharpens iron, and one man sharpens another." — Prov. 27:17</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

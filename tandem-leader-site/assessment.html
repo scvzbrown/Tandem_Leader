@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ministry Leadership Health Check — Tandem Leader</title>
+  <meta name="description" content="Take the free Ministry Leadership Health Check — a 10-question diagnostic that reveals your leadership strengths and surfaces the gaps limiting your team." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* ---- Assessment Wrapper ---- */
+    .assessment-page {
+      min-height: 100vh;
+      padding: 110px 0 80px;
+      background: linear-gradient(to bottom, var(--dark-2) 0%, var(--dark) 60%);
+    }
+    .assessment-container { max-width: 720px; margin: 0 auto; padding: 0 32px; }
+
+    /* ---- Intro ---- */
+    .assessment-intro { text-align: center; margin-bottom: 52px; }
+    .assessment-intro h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 18px; }
+    .assessment-intro p { color: var(--lgray); font-size: 1.05rem; max-width: 540px; margin: 0 auto 28px; line-height: 1.7; }
+    .assessment-intro__meta {
+      display: flex; justify-content: center; gap: 36px; flex-wrap: wrap;
+      margin-top: 24px;
+    }
+    .assessment-intro__meta-item { text-align: center; }
+    .assessment-intro__meta-item strong {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: 2rem; color: var(--orange);
+    }
+    .assessment-intro__meta-item span { font-size: 0.78rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.1em; }
+
+    /* ---- Progress ---- */
+    .progress-bar-wrap { margin-bottom: 36px; }
+    .progress-label {
+      display: flex; justify-content: space-between;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--gray); margin-bottom: 10px;
+    }
+    .progress-label span:last-child { color: var(--orange); }
+    .progress-track {
+      height: 3px; background: var(--dark-3); position: relative;
+    }
+    .progress-fill {
+      position: absolute; left: 0; top: 0; bottom: 0;
+      background: var(--orange);
+      transition: width 0.4s ease;
+    }
+
+    /* ---- Question Card ---- */
+    .question-card {
+      background: var(--dark-2);
+      border-top: 3px solid var(--orange);
+      padding: 44px 40px;
+      margin-bottom: 24px;
+      display: none;
+    }
+    .question-card.active { display: block; }
+    .question-card__category {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 0.7rem;
+      text-transform: uppercase; letter-spacing: 0.16em;
+      color: var(--orange); margin-bottom: 14px;
+    }
+    .question-card h2 {
+      font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+      margin-bottom: 28px; line-height: 1.3;
+    }
+    .options { display: flex; flex-direction: column; gap: 10px; }
+    .option {
+      background: var(--dark-3);
+      border: 1px solid var(--border);
+      padding: 14px 20px;
+      cursor: pointer;
+      transition: all 0.18s;
+      display: flex; align-items: center; gap: 14px;
+      font-size: 0.95rem; color: var(--lgray);
+      user-select: none;
+    }
+    .option:hover { border-color: rgba(232,114,42,0.4); color: var(--white); background: var(--dark-4); }
+    .option.selected { border-color: var(--orange); color: var(--white); background: var(--dark-4); }
+    .option__dot {
+      width: 18px; height: 18px; border-radius: 50%;
+      border: 2px solid var(--border);
+      flex-shrink: 0; transition: all 0.18s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .option.selected .option__dot { border-color: var(--orange); background: var(--orange); }
+    .option.selected .option__dot::after { content: '✓'; font-size: 0.65rem; color: white; font-weight: 700; }
+
+    /* ---- Nav Buttons ---- */
+    .question-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 28px; }
+    .btn-prev {
+      background: transparent; border: none; cursor: pointer;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+      font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--gray); transition: color 0.2s; padding: 0;
+    }
+    .btn-prev:hover { color: var(--white); }
+    .btn-prev:disabled { opacity: 0.2; cursor: default; }
+
+    /* ---- Results ---- */
+    .results-card { display: none; }
+    .results-card.active { display: block; }
+    .score-display {
+      text-align: center;
+      background: var(--dark-2);
+      border-top: 3px solid var(--orange);
+      padding: 52px 40px 40px;
+      margin-bottom: 24px;
+    }
+    .score-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 0.72rem;
+      text-transform: uppercase; letter-spacing: 0.16em;
+      color: var(--orange); margin-bottom: 16px;
+    }
+    .score-number {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: 6rem; line-height: 1;
+      color: var(--white); margin-bottom: 8px;
+    }
+    .score-number span { font-size: 2.5rem; color: var(--gray); }
+    .score-tier {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: 2rem;
+      text-transform: uppercase; letter-spacing: 0.04em;
+      margin-bottom: 16px;
+    }
+    .score-desc { font-size: 1rem; color: var(--lgray); max-width: 480px; margin: 0 auto; line-height: 1.7; }
+
+    /* Score track visual */
+    .score-track-wrap { margin: 28px 0 0; }
+    .score-track {
+      height: 8px; background: var(--dark-3); border-radius: 0; position: relative; margin-bottom: 6px;
+    }
+    .score-fill {
+      position: absolute; left: 0; top: 0; bottom: 0;
+      background: linear-gradient(to right, #E8722A, #f0a060);
+      transition: width 1s ease;
+    }
+    .score-track-labels {
+      display: flex; justify-content: space-between;
+      font-size: 0.7rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.08em;
+    }
+
+    /* ---- Category Breakdown ---- */
+    .breakdown { background: var(--dark-2); padding: 36px 40px; margin-bottom: 24px; }
+    .breakdown h3 { font-size: 1.4rem; margin-bottom: 24px; }
+    .breakdown-item { margin-bottom: 22px; }
+    .breakdown-item:last-child { margin-bottom: 0; }
+    .breakdown-item__header {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;
+    }
+    .breakdown-item__name { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .breakdown-item__score { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; color: var(--orange); font-size: 1rem; }
+    .breakdown-track { height: 4px; background: var(--dark-4); }
+    .breakdown-fill { height: 100%; background: var(--orange); transition: width 1s ease; }
+
+    /* ---- Recommendation ---- */
+    .recommendation {
+      background: var(--dark-3);
+      border-left: 4px solid var(--orange);
+      padding: 28px 32px;
+      margin-bottom: 24px;
+    }
+    .recommendation h3 { font-size: 1.2rem; margin-bottom: 10px; }
+    .recommendation p { color: var(--lgray); font-size: 0.95rem; line-height: 1.7; margin-bottom: 16px; }
+    .recommendation p:last-child { margin-bottom: 0; }
+
+    /* ---- Results CTA ---- */
+    .results-cta {
+      background: var(--dark-2);
+      padding: 40px;
+      text-align: center;
+    }
+    .results-cta h3 { font-size: 1.8rem; margin-bottom: 12px; }
+    .results-cta p { color: var(--lgray); font-size: 0.95rem; max-width: 440px; margin: 0 auto 24px; }
+    .results-cta__btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .results-cta__retake {
+      background: none; border: none; cursor: pointer;
+      font-size: 0.82rem; color: var(--gray); margin-top: 16px;
+      text-decoration: underline; text-underline-offset: 3px;
+    }
+    .results-cta__retake:hover { color: var(--white); }
+
+    @media (max-width: 560px) {
+      .question-card { padding: 28px 24px; }
+      .breakdown { padding: 28px 24px; }
+      .results-cta { padding: 28px 24px; }
+      .score-display { padding: 36px 24px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo">Tandem<span>Leader</span></a>
+        <div class="nav__links">
+          <a href="solutions.html">Solutions</a>
+          <a href="resources.html" class="active">Resources</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="contact.html" class="btn btn--primary btn--sm nav__cta">Start the Conversation</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="assessment-page">
+    <div class="assessment-container">
+
+      <!-- INTRO (shown before quiz starts) -->
+      <div id="intro-screen" class="assessment-intro">
+        <span class="label">Free Tool</span>
+        <div class="orange-rule orange-rule--center" style="margin-top:16px;"></div>
+        <h1>Ministry Leadership<br />Health Check</h1>
+        <p>Answer 10 honest questions about your leadership and organization. You'll get a personalized score across four key areas — and a clear picture of where to focus next.</p>
+        <div class="assessment-intro__meta">
+          <div class="assessment-intro__meta-item">
+            <strong>10</strong><span>Questions</span>
+          </div>
+          <div class="assessment-intro__meta-item">
+            <strong>~5</strong><span>Minutes</span>
+          </div>
+          <div class="assessment-intro__meta-item">
+            <strong>Free</strong><span>Always</span>
+          </div>
+        </div>
+        <div style="margin-top:40px;">
+          <button class="btn btn--primary" onclick="startAssessment()">Start the Assessment →</button>
+        </div>
+        <p style="font-size:0.8rem;color:var(--gray);margin-top:16px;">No email required to see your results.</p>
+      </div>
+
+      <!-- QUIZ -->
+      <div id="quiz-screen" style="display:none;">
+        <div class="progress-bar-wrap">
+          <div class="progress-label">
+            <span>Ministry Leadership Health Check</span>
+            <span id="progress-text">Question 1 of 10</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progress-fill" style="width:10%"></div>
+          </div>
+        </div>
+
+        <!-- Q1 -->
+        <div class="question-card active" data-q="0" data-category="Vision & Clarity">
+          <div class="question-card__category">Vision &amp; Clarity</div>
+          <h2>How clearly can your entire leadership team articulate your church's vision and mission right now?</h2>
+          <div class="options">
+            <div class="option" onclick="selectOption(this, 4)"><div class="option__dot"></div>Everyone on staff could say it word for word</div>
+            <div class="option" onclick="selectOption(this, 3)"><div class="option__dot"></div>Most could describe it clearly in their own words</div>
+            <div class="option" onclick="selectOption(this, 2)"><div class="option__dot"></div>Some could, but it's inconsistent across the team</div>
+            <div class="option" onclick="selectOption(this, 1)"><div class="option__dot"></div>We haven't clearly defined or communicated it yet</div>
+          </div>
+          <div class="question-nav">
+            <button class="btn-prev" disabled onclick="prevQuestion()">← Previous</button>
+            <button class="btn btn--primary btn--sm" onclick="nextQuestion()" id="next-btn-0" disabled>Next →</button>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="question-card" data-q="1" data-category="Vision & Clarity">
+          <div class="question-card__category">Vision &amp; Clarity</div>
+          <h2>How confident are you that your leadership team is aligned on your top three organizational priorities this year?</h2>
+          <div class="options">
+            <div class="option" onclick="selectOption(this, 4)"><div class="option__dot"></div>Very confident — we talk about them regularly and everyone's on the same page</div>
+            <div class="option" onclick="selectOption(this, 3)"><div class="option__dot"></div>Fairly confident — we've discussed them, though alignment could be stronger</div>
+            <div class="option" onclick="selectOption(this, 2)"><div class="option__dot"></div>Not very confident — priorities shift often or aren't clearly communicated</div>
+            <div class="option" onclick="selectOption(this, 1)"><div class="option__dot"></div>We don't have clearly defined organizational priorities</div>
+          </div>
+          <div class="question-nav">
+            <button class="btn-prev" onclick="prevQuestion()">← Previous</button>
+            <button class="btn btn--primary btn--sm" onclick="nextQuestion()" id="next-btn-1" disabled>Next →</button>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="question-card" data-q="2" data-category="Team Health">
+          <div class="question-card__category">Team Health</div>
+          <h2>How would you describe the level of trust and honest communication on your leadership team?</h2>
+          <div class="options">
+            <div class="option" onclick="selectOption(this, 4)"><div class="option__dot"></div>High trust — people say the hard things in love and we work through conflict well</div>
+            <div class="option" onclick="selectOption(this, 3)"><div class="option__dot"></div>Generally good — some tension at times, but mostly healthy</div>
+            <div class="option" onclick="selectOption(this, 2)"><div class="option__dot"></div>Mixed — there are some unspoken tensions or patterns we avoid addressing</div>
+            <div class="option" onclick="selectOption(this, 1)"><div class="option__dot"></div>Low — conflict is avoided or handled poorly and it affects morale</div>
+          </div>
+          <div class="question-nav">
+            <button class="btn-prev" onclick="prevQuestion()">← Previous</button>
+            <button class="btn btn--primary btn--sm" onclick="nextQuestion()" id="next-btn-2" disabled>Next →</button>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="question-card" data-q="3" data-category="Team Health">
+          <div class="question-card__category">Team Health</div>
+          <h2>How clear are your staff members about their individual roles, responsibilities, and success metrics?</h2>
+          <div class="options">
+            <div class="option" onclick="selectOption(this, 4)"><div class="option__dot"></div>Very clear — everyone has documented roles and knows how their work is measured</div>
+            <div class="option" onclick="selectOption(this, 3)"><div class="option__dot"></div>Mostly clear — but some overlap or ambiguity exists in certain areas</div>
+            <div class="option" onclick="selectOption(this, 2)"><div class="option__dot"></div>Somewhat unclear — roles have evolved without formal updates or accountability</div>
+            <div class="option" onclick="selectOption(this, 1)"><div class="option__dot"></div>Not clear — there's significant confusion or overlap in who owns what</div>
+          </div>
+          <div class="question-nav">
+            <button class="btn-prev" onclick="prevQuestion()">← Previous</button>
+            <button class="btn btn--primary btn--sm" onclick="nextQuestion()" id="next-btn-3" disabled>Next →</button>
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="question-card" data-q="4" data-category="Personal Leadership">
+          <div class="question-card__category">Personal Leadership</div>
+          <h2>When did you last receive honest, substantive feedback on your own leadership — from someone qualified to give it?</h2>
+          <div class="options">
+            <div class="option" onclick="selectOption(this, 4)"><div class="option__dot"></div>Within the last 3 months — I have an intentional feedback structure in place</div>
+            <div class="option" onclick="selectOption(this, 3)"><div class="option__dot"></div>Within the last year — it happens, but not consistently</div>
+            <div class="option" onclick="selectOption(this, 2)"><div class="option__dot"></div>It's been a while — longer than a year, or only from my board/supervisor</div>
+            <div class="option" onclick="selectOption(this, 1)"><div class="option__dot"></div>I'm not sure I've ever had that kind of feedback</div>
+          </div>
+          <div class="question-nav">
+            <button class="btn-prev" onclick="prevQuestion()">← Previous</button>
+            <button class="btn btn--primary btn--sm" onclick="nextQuestion()" id="next-btn-4" disabled>Next →</button>
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="question-card" data-q="5" data-category="Personal Leadership">
+          <div class="question-card__category">Personal Leadership</div>
+          <h2>How intentional are you about your own leadership growth and development right now?</h2>
+          <div class="options">
+            <div class="option" onclick="selectOption(this, 4)"><div class="option__dot"></div>Very intentional — I have a coach, a plan, and I protect time for it</div>
+            <div class="option" onclick="selectOption(this, 3)"><div class="option__dot"></div>Moderately intentional — I read and learn, but it's not very structured</div>
+            <div class="option" onclick="selectOption(this, 2)"><div class="option__dot"></div>Not very intentional — it happens occasionally but there's no real plan</div>
+            <div class="option" onclick="selectOption(this, 1)"><div class="option__dot"></div>My own development rarely makes the priority list</div>
+          </div>
+          <div class="question-nav">
+            <button class="btn-prev" onclick="prevQuestion()">← Previous</button>
+            <button class="btn btn--primary btn--sm" onclick="nextQuestion()" id="next-btn-5" disabled>Next →</button>
+          </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="question-card" data-q="6" data-category="Execution & Systems">
+          <div class="question-card__category">Execution &amp; Systems</div>
+          <h2>How well does your organization translate vision and plans into consistent, disciplined execution?</h2>
+          <div class="options">
+            <div class="option" onclick="selectOption(this, 4)"><div class="option__dot"></div>Very well — we have strong rhythms, accountability, and follow-through</div>
+            <div class="option" onclick="selectOption(this, 3)"><div class="option__dot"></div>Pretty well — we execute most of what we plan, though some things fall through</div>
+            <div class="option" onclick="selectOption(this, 2)"><div class="option__dot"></div>Inconsistently — we start strong but often don't finish or follow through</div>
+            <div class="option" onclick="selectOption(this, 1)"><div class="option__dot"></div>Poorly — we're better at vision-casting than actually executing on it</div>
+          </div>
+          <div class="question-nav">
+            <button class="btn-prev" onclick="prevQuestion()">← Previous</button>
+            <button class="btn btn--primary btn--sm" onclick="nextQuestion()" id="next-btn-6" disabled>Next →</button>
+          </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="question-card" data-q="7" data-category="Execution & Systems">
+          <div class="question-card__category">Execution &amp; Systems</div>
+          <h2>How would you describe your organization's internal systems and operational structure?</h2>
+          <div class="options">
+            <div class="option" onclick="selectOption(this, 4)"><div class="option__dot"></div>Strong — documented, efficient, and regularly evaluated</div>
+            <div class="option" onclick="selectOption(this, 3)"><div class="option__dot"></div>Functional — things generally work, but there are gaps and inefficiencies</div>
+            <div class="option" onclick="selectOption(this, 2)"><div class="option__dot"></div>Reactive — we build systems in response to problems rather than proactively</div>
+            <div class="option" onclick="selectOption(this, 1)"><div class="option__dot"></div>Underdeveloped — we run mostly on relationships and tribal knowledge</div>
+          </div>
+          <div class="question-nav">
+            <button class="btn-prev" onclick="prevQuestion()">← Previous</button>
+            <button class="btn btn--primary btn--sm" onclick="nextQuestion()" id="next-btn-7" disabled>Next →</button>
+          </div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="question-card" data-q="8" data-category="Vision & Clarity">
+          <div class="question-card__category">Vision &amp; Clarity</div>
+          <h2>How would you rate your church's overall organizational health right now?</h2>
+          <div class="options">
+            <div class="option" onclick="selectOption(this, 4)"><div class="option__dot"></div>Thriving — strong culture, growing teams, and clear momentum</div>
+            <div class="option" onclick="selectOption(this, 3)"><div class="option__dot"></div>Stable — things are generally good, but growth has plateaued</div>
+            <div class="option" onclick="selectOption(this, 2)"><div class="option__dot"></div>Strained — we're managing challenges that are affecting culture or effectiveness</div>
+            <div class="option" onclick="selectOption(this, 1)"><div class="option__dot"></div>Struggling — there are significant issues that need to be addressed urgently</div>
+          </div>
+          <div class="question-nav">
+            <button class="btn-prev" onclick="prevQuestion()">← Previous</button>
+            <button class="btn btn--primary btn--sm" onclick="nextQuestion()" id="next-btn-8" disabled>Next →</button>
+          </div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="question-card" data-q="9" data-category="Team Health">
+          <div class="question-card__category">Team Health</div>
+          <h2>If you're honest — how would your team describe your current leadership effectiveness?</h2>
+          <div class="options">
+            <div class="option" onclick="selectOption(this, 4)"><div class="option__dot"></div>Highly effective — they'd say I'm clear, consistent, and empowering</div>
+            <div class="option" onclick="selectOption(this, 3)"><div class="option__dot"></div>Generally effective — mostly positive, but room to grow in specific areas</div>
+            <div class="option" onclick="selectOption(this, 2)"><div class="option__dot"></div>Mixed — I know there are some areas where I'm not leading as well as I should</div>
+            <div class="option" onclick="selectOption(this, 1)"><div class="option__dot"></div>I'm honestly not sure — I don't have enough feedback to know</div>
+          </div>
+          <div class="question-nav">
+            <button class="btn-prev" onclick="prevQuestion()">← Previous</button>
+            <button class="btn btn--primary btn--sm" onclick="showResults()" id="next-btn-9" disabled>See My Results →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESULTS -->
+      <div id="results-screen" class="results-card">
+        <div class="assessment-intro" style="margin-bottom:28px;text-align:left;">
+          <span class="label">Your Results</span>
+          <div class="orange-rule" style="margin-top:12px;"></div>
+        </div>
+
+        <div class="score-display">
+          <div class="score-label">Your Ministry Leadership Health Score</div>
+          <div class="score-number" id="score-number">0<span>/40</span></div>
+          <div class="score-tier" id="score-tier"></div>
+          <div class="score-desc" id="score-desc"></div>
+          <div class="score-track-wrap">
+            <div class="score-track">
+              <div class="score-fill" id="score-fill" style="width:0%"></div>
+            </div>
+            <div class="score-track-labels">
+              <span>Needs Attention</span>
+              <span>Growing</span>
+              <span>Strong</span>
+              <span>Thriving</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="breakdown">
+          <h3>Score by Category</h3>
+          <div class="breakdown-item">
+            <div class="breakdown-item__header">
+              <span class="breakdown-item__name">Vision &amp; Clarity</span>
+              <span class="breakdown-item__score" id="cat-vision">— / 12</span>
+            </div>
+            <div class="breakdown-track"><div class="breakdown-fill" id="fill-vision" style="width:0%"></div></div>
+          </div>
+          <div class="breakdown-item">
+            <div class="breakdown-item__header">
+              <span class="breakdown-item__name">Team Health</span>
+              <span class="breakdown-item__score" id="cat-team">— / 12</span>
+            </div>
+            <div class="breakdown-track"><div class="breakdown-fill" id="fill-team" style="width:0%"></div></div>
+          </div>
+          <div class="breakdown-item">
+            <div class="breakdown-item__header">
+              <span class="breakdown-item__name">Personal Leadership</span>
+              <span class="breakdown-item__score" id="cat-personal">— / 8</span>
+            </div>
+            <div class="breakdown-track"><div class="breakdown-fill" id="fill-personal" style="width:0%"></div></div>
+          </div>
+          <div class="breakdown-item">
+            <div class="breakdown-item__header">
+              <span class="breakdown-item__name">Execution &amp; Systems</span>
+              <span class="breakdown-item__score" id="cat-execution">— / 8</span>
+            </div>
+            <div class="breakdown-track"><div class="breakdown-fill" id="fill-execution" style="width:0%"></div></div>
+          </div>
+        </div>
+
+        <div class="recommendation" id="recommendation-box">
+          <h3 id="rec-title"></h3>
+          <p id="rec-body"></p>
+          <p id="rec-solution"></p>
+        </div>
+
+        <div class="results-cta">
+          <h3 id="cta-headline">Ready to Take the Next Step?</h3>
+          <p id="cta-body">Schedule a free discovery call with Thomas to talk through your results and find out what's possible.</p>
+          <div class="results-cta__btns">
+            <a href="contact.html" class="btn btn--primary">Book a Free Discovery Call</a>
+            <a href="solutions.html" class="btn btn--outline">See Our Solutions</a>
+          </div>
+          <br/>
+          <button class="results-cta__retake" onclick="retakeAssessment()">Retake the Assessment</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <div class="footer__logo">Tandem<span>Leader</span></div>
+          <p class="footer__tagline">Strengthening Leaders and Sharpening Organizations for Greater Kingdom Impact.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Solutions</h4>
+          <ul>
+            <li><a href="solutions.html#whetstone">Whetstone</a></li>
+            <li><a href="solutions.html#honing">Honing</a></li>
+            <li><a href="solutions.html#spark">Spark</a></li>
+            <li><a href="solutions.html#xp-retainer">Executive Pastor on Retainer</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="resources.html">All Resources</a></li>
+            <li><a href="assessment.html">Leadership Assessment</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Thomas</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 Tandem Leader. All rights reserved.</span>
+        <p class="footer__scripture">"Iron sharpens iron, and one man sharpens another." — Prov. 27:17</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ---- State ----
+    const answers = new Array(10).fill(null);
+    let currentQ = 0;
+
+    // Category mapping: q index → category key
+    const catMap = {
+      0: 'vision', 1: 'vision', 2: 'team', 3: 'team',
+      4: 'personal', 5: 'personal', 6: 'execution', 7: 'execution',
+      8: 'vision', 9: 'team'
+    };
+    const catMax = { vision: 12, team: 12, personal: 8, execution: 8 };
+
+    function startAssessment() {
+      document.getElementById('intro-screen').style.display = 'none';
+      document.getElementById('quiz-screen').style.display = 'block';
+    }
+
+    function selectOption(el, value) {
+      const card = el.closest('.question-card');
+      card.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+      el.classList.add('selected');
+      const q = parseInt(card.dataset.q);
+      answers[q] = value;
+      document.getElementById('next-btn-' + q).disabled = false;
+    }
+
+    function nextQuestion() {
+      if (currentQ < 9) {
+        document.querySelectorAll('.question-card')[currentQ].classList.remove('active');
+        currentQ++;
+        document.querySelectorAll('.question-card')[currentQ].classList.add('active');
+        updateProgress();
+      }
+    }
+
+    function prevQuestion() {
+      if (currentQ > 0) {
+        document.querySelectorAll('.question-card')[currentQ].classList.remove('active');
+        currentQ--;
+        document.querySelectorAll('.question-card')[currentQ].classList.add('active');
+        updateProgress();
+      }
+    }
+
+    function updateProgress() {
+      const pct = ((currentQ + 1) / 10) * 100;
+      document.getElementById('progress-fill').style.width = pct + '%';
+      document.getElementById('progress-text').textContent = 'Question ' + (currentQ + 1) + ' of 10';
+    }
+
+    function showResults() {
+      document.getElementById('quiz-screen').style.display = 'none';
+      document.getElementById('results-screen').classList.add('active');
+
+      // Calculate totals
+      const total = answers.reduce((a, b) => a + (b || 0), 0);
+      const catScores = { vision: 0, team: 0, personal: 0, execution: 0 };
+      answers.forEach((val, i) => { if (val) catScores[catMap[i]] += val; });
+
+      // Display score
+      setTimeout(() => {
+        document.getElementById('score-number').innerHTML = total + '<span>/40</span>';
+        document.getElementById('score-fill').style.width = (total / 40 * 100) + '%';
+
+        // Category bars
+        Object.keys(catScores).forEach(cat => {
+          const pct = (catScores[cat] / catMax[cat]) * 100;
+          document.getElementById('fill-' + cat).style.width = pct + '%';
+          document.getElementById('cat-' + cat).textContent = catScores[cat] + ' / ' + catMax[cat];
+        });
+      }, 100);
+
+      // Tier & recommendation
+      let tier, desc, recTitle, recBody, recSolution, ctaHeadline, ctaBody;
+
+      if (total >= 34) {
+        tier = 'Thriving';
+        document.getElementById('score-tier').style.color = '#4CAF50';
+        desc = 'Your leadership health is strong. Your team is aligned, your systems are working, and you're investing in your own growth. The goal now is to sustain, scale, and sharpen further.';
+        recTitle = 'Strong Foundation — Now Sharpen the Edge';
+        recBody = 'Leaders at your level are exactly who Honing was designed for — not because you're struggling, but because you're serious about staying sharp. A consistent coaching relationship keeps you growing and gives you the outside perspective great leaders always need.';
+        recSolution = 'Consider Honing Leadership Coaching to keep your edge — and Whetstone if you're ready to bring the whole team to this level.';
+        ctaHeadline = "You're leading well. Let's keep it that way.";
+        ctaBody = "Talk with Thomas about what intentional next-level growth looks like for leaders at your stage.";
+      } else if (total >= 25) {
+        tier = 'Growing';
+        document.getElementById('score-tier').style.color = '#E8722A';
+        desc = 'You have real strengths to build on, and there are clear areas where focused attention will produce significant results. The gap between where you are and where you want to be is closeable — with the right investment.';
+        recTitle = 'Solid Momentum — Clear Gaps to Address';
+        recBody = 'Your scores suggest a leader who is doing meaningful work but may be operating without the structural support that makes great leadership sustainable. A coaching relationship or organizational engagement could accelerate your growth significantly.';
+        recSolution = 'Honing Leadership Coaching is a strong fit for your personal growth. If team alignment is a gap, Whetstone addresses the full organizational picture.';
+        ctaHeadline = "Good foundation. Let's build on it.";
+        ctaBody = "Schedule a discovery call to talk through your specific gaps and find the right next step.";
+      } else if (total >= 16) {
+        tier = 'Developing';
+        document.getElementById('score-tier').style.color = '#E8B84B';
+        desc = 'There are meaningful gaps in your leadership health that are likely limiting your team\'s effectiveness and your organization\'s impact. The good news: these are solvable — and now you know where to focus.';
+        recTitle = 'Real Opportunities to Strengthen Your Leadership';
+        recBody = 'Leaders in this range often have a significant vision — but are operating without the organizational infrastructure or personal development structures to fully execute on it. This is exactly the gap Tandem Leader was built to close.';
+        recSolution = 'We\'d recommend starting with a discovery conversation. Depending on your situation, either Honing or Whetstone — or both — could produce significant results for you.';
+        ctaHeadline = "The gap is real. So is the path forward.";
+        ctaBody = "Let's have an honest conversation about where you are and what's possible.";
+      } else {
+        tier = 'Needs Attention';
+        document.getElementById('score-tier').style.color = '#E85A2A';
+        desc = 'Your results indicate significant challenges in multiple areas of leadership health. This isn\'t a judgment — it\'s a diagnosis. And the first step toward transformation is an honest assessment of where you actually are.';
+        recTitle = '"Prescription Without Diagnosis Is Malpractice"';
+        recBody = 'You\'ve just done the hardest part — you\'ve been honest. Leaders who are willing to face the truth about where they are are exactly the leaders who can change. The question is: what do you do with this information?';
+        recSolution = 'We\'d recommend a direct conversation with Thomas. Whetstone\'s organizational engagement was designed for situations exactly like yours — and the transformation it produces is real.';
+        ctaHeadline = "Honest diagnosis is where transformation starts.";
+        ctaBody = "Talk with Thomas about what a path forward looks like. No pressure — just an honest conversation.";
+      }
+
+      document.getElementById('score-tier').textContent = tier;
+      document.getElementById('score-desc').textContent = desc;
+      document.getElementById('rec-title').textContent = recTitle;
+      document.getElementById('rec-body').textContent = recBody;
+      document.getElementById('rec-solution').textContent = recSolution;
+      document.getElementById('cta-headline').textContent = ctaHeadline;
+      document.getElementById('cta-body').textContent = ctaBody;
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function retakeAssessment() {
+      answers.fill(null);
+      currentQ = 0;
+      document.querySelectorAll('.question-card').forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('.question-card')[0].classList.add('active');
+      document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+      document.querySelectorAll('[id^="next-btn-"]').forEach(b => b.disabled = true);
+      document.getElementById('results-screen').classList.remove('active');
+      document.getElementById('quiz-screen').style.display = 'block';
+      updateProgress();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>

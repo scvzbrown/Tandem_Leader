@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solutions — Tandem Leader</title>
+  <meta name="description" content="Tandem Leader offers four solutions for church leaders: Whetstone, Honing, Spark, and Executive Pastor on Retainer." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* ---- Solution Section ---- */
+    .solution {
+      padding: 96px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .solution:nth-child(even) { background: var(--dark-2); }
+
+    .solution__inner { display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; align-items: start; }
+    .solution__sidebar { position: sticky; top: 100px; }
+    .solution__num {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+      font-size: 6rem; color: var(--orange); opacity: 0.15; line-height: 1;
+      margin-bottom: -16px;
+    }
+    .solution__name { font-size: clamp(3rem, 5vw, 4.5rem); margin-bottom: 10px; }
+    .solution__tagline {
+      color: var(--orange);
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 600;
+      font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 24px; line-height: 1.4;
+    }
+    .solution__price {
+      background: var(--dark-3);
+      border-top: 3px solid var(--orange);
+      padding: 24px 28px;
+      margin-top: 32px;
+    }
+    .solution__price-amount {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+      font-size: 3rem; color: var(--white); line-height: 1; margin-bottom: 10px;
+    }
+    .solution__price-details { font-size: 0.85rem; color: var(--lgray); line-height: 1.65; }
+    .solution__price-details li { margin-bottom: 4px; list-style: none; padding-left: 14px; position: relative; }
+    .solution__price-details li::before { content: '·'; position: absolute; left: 0; color: var(--orange); }
+
+    /* ---- Solution Body ---- */
+    .solution__body h3 { font-size: 1.6rem; margin-bottom: 12px; }
+    .solution__body p { color: var(--lgray); margin-bottom: 18px; font-size: 1rem; line-height: 1.75; }
+    .solution__body .intro { font-size: 1.08rem; color: var(--white); margin-bottom: 36px; }
+
+    .process-row {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+      margin: 36px 0;
+    }
+    .process-cell {
+      background: var(--dark-3);
+      padding: 28px 22px;
+    }
+    .process-cell__phase {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+      font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.16em;
+      color: var(--orange); margin-bottom: 10px;
+    }
+    .process-cell h4 { font-size: 1.2rem; margin-bottom: 8px; }
+    .process-cell p { font-size: 0.85rem; color: var(--lgray); line-height: 1.6; margin: 0; }
+    .process-cell__detail {
+      margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border);
+      font-size: 0.82rem; color: var(--orange);
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+    }
+
+    .outcomes-list {
+      list-style: none;
+      margin: 0 0 28px;
+    }
+    .outcomes-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+      color: var(--lgray);
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .outcomes-list li::before {
+      content: '→';
+      color: var(--orange);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ---- Best For ---- */
+    .best-for {
+      background: var(--dark-4);
+      border-left: 4px solid var(--orange);
+      padding: 20px 24px;
+      margin: 28px 0;
+      font-size: 0.92rem;
+      color: var(--lgray);
+    }
+    .best-for strong {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 0.78rem; text-transform: uppercase;
+      letter-spacing: 0.14em; color: var(--orange); margin-bottom: 6px;
+    }
+
+    @media (max-width: 900px) {
+      .solution__inner { grid-template-columns: 1fr; gap: 40px; }
+      .solution__sidebar { position: static; }
+      .process-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo">Tandem<span>Leader</span></a>
+        <div class="nav__links">
+          <a href="solutions.html" class="active">Solutions</a>
+          <a href="resources.html">Resources</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="contact.html" class="btn btn--primary btn--sm nav__cta">Start the Conversation</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <span class="label">Our Solutions</span>
+      <div class="orange-rule orange-rule--center" style="margin-top:16px;"></div>
+      <h1>Built for the Leaders<br />You're Called to Be</h1>
+      <p>Every leader and every organization is at a different place. Our four solutions are designed to meet you where you are — and move you toward greater Kingdom impact.</p>
+    </div>
+  </div>
+
+  <!-- WHETSTONE -->
+  <section class="solution" id="whetstone">
+    <div class="container">
+      <div class="solution__inner">
+        <div class="solution__sidebar">
+          <span class="label">Operational Fundamentals</span>
+          <div class="solution__num">01</div>
+          <h2 class="solution__name">Whetstone</h2>
+          <div class="solution__tagline">12 Months · 4 Pillars · One Stronger Team</div>
+          <div class="orange-rule"></div>
+          <div class="solution__price">
+            <div class="solution__price-amount">$9,000</div>
+            <ul class="solution__price-details">
+              <li>12-month engagement</li>
+              <li>Agreed-upon outcomes</li>
+              <li>Monthly meetings</li>
+              <li>Quarterly deep dives</li>
+            </ul>
+          </div>
+          <a href="contact.html" class="btn btn--primary" style="margin-top:24px;width:100%;text-align:center;">Let's Talk About Whetstone</a>
+        </div>
+
+        <div class="solution__body">
+          <p class="intro">Most ministry organizations have a clarity problem — not a resources problem. When your structure, systems, culture, and people aren't aligned, even the best strategy falls apart.</p>
+          <p>Whetstone is a 12-month organizational consulting engagement designed to strengthen the four core pillars of a healthy ministry organization. Through a guided discovery process and ongoing coaching, we help your team get aligned — and stay aligned.</p>
+
+          <h3>The Process</h3>
+          <div class="process-row">
+            <div class="process-cell">
+              <div class="process-cell__phase">Phase 1</div>
+              <h4>Discovery</h4>
+              <p>A guided journey to strengthen the Structure, Systems, Culture, and People of your organization.</p>
+              <div class="process-cell__detail">2 Days · Leadership All-Hands · Aligned Purpose, Vision &amp; Mission</div>
+            </div>
+            <div class="process-cell">
+              <div class="process-cell__phase">Phase 2</div>
+              <h4>The Process</h4>
+              <p>Question, Learn, Lead — a disciplined framework for building execution habits across your whole team.</p>
+              <div class="process-cell__detail">12 Follow-Up Sessions · Quarterly Alignment Meetings</div>
+            </div>
+            <div class="process-cell">
+              <div class="process-cell__phase">Phase 3</div>
+              <h4>Outcomes</h4>
+              <p>Synergy — an agile, measured, and sustainable organization ready to execute on its God-given mission.</p>
+              <div class="process-cell__detail">Steady Culture · Effective Leadership · Repeatable Results</div>
+            </div>
+          </div>
+
+          <h3>What You'll Walk Away With</h3>
+          <ul class="outcomes-list">
+            <li>A fully aligned leadership team with shared purpose, vision, and mission</li>
+            <li>A steady, stable, and healthy internal culture</li>
+            <li>Effective leadership at every level of the organization</li>
+            <li>Operational systems that produce predictable, repeatable results</li>
+            <li>SMART goals, accountability structures, and feedback loops</li>
+          </ul>
+
+          <div class="best-for">
+            <strong>Best For</strong>
+            Churches and Christian nonprofits that are experiencing leadership misalignment, organizational drift, or preparing for a season of significant growth or transition.
+          </div>
+
+          <a href="contact.html" class="btn btn--primary">Start the Conversation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HONING -->
+  <section class="solution" id="honing">
+    <div class="container">
+      <div class="solution__inner">
+        <div class="solution__sidebar">
+          <span class="label">Leadership Coaching</span>
+          <div class="solution__num">02</div>
+          <h2 class="solution__name">Honing</h2>
+          <div class="solution__tagline">Sharper Leaders. Stronger Teams. Greater Impact.</div>
+          <div class="orange-rule"></div>
+          <div class="solution__price">
+            <div class="solution__price-amount">$3,600</div>
+            <ul class="solution__price-details">
+              <li>12-month engagement</li>
+              <li>Agreed-upon outcomes</li>
+              <li>Monthly 1-on-1 sessions</li>
+              <li>3 deep dives per year</li>
+            </ul>
+          </div>
+          <a href="contact.html" class="btn btn--primary" style="margin-top:24px;width:100%;text-align:center;">Let's Talk About Honing</a>
+        </div>
+
+        <div class="solution__body">
+          <p class="intro">Every great leader has a coach. Not because they're broken — but because sharpening requires friction, honesty, and a consistent outside perspective.</p>
+          <p>Honing is a 12-month coaching relationship for growth-minded leaders who want to grow their influence, confidence, and effectiveness. It starts with a Leadership Diagnostic and Profile — so we know exactly where to focus — then builds momentum through monthly 1:1 coaching sessions and three annual deep dives.</p>
+
+          <h3>The Process</h3>
+          <div class="process-row">
+            <div class="process-cell">
+              <div class="process-cell__phase">Step 1</div>
+              <h4>Overview</h4>
+              <p>Coaching relationship for growth-minded leaders who want to grow their influence, confidence, and effectiveness.</p>
+              <div class="process-cell__detail">Leadership Diagnostics · Leadership Profile</div>
+            </div>
+            <div class="process-cell">
+              <div class="process-cell__phase">Step 2</div>
+              <h4>The Process</h4>
+              <p>Question, Learn, Lead — a consistent framework applied across every coaching session to drive real growth.</p>
+              <div class="process-cell__detail">Monthly 1:1 Coaching Sessions</div>
+            </div>
+            <div class="process-cell">
+              <div class="process-cell__phase">Step 3</div>
+              <h4>Outcomes</h4>
+              <p>Real accountability, honest feedback, and a feed-forward approach that keeps you moving in the right direction.</p>
+              <div class="process-cell__detail">Accountability · Feedback &amp; Feedforward</div>
+            </div>
+          </div>
+
+          <h3>What You'll Walk Away With</h3>
+          <ul class="outcomes-list">
+            <li>A deep understanding of your leadership strengths and growth edges</li>
+            <li>Increased confidence, influence, and effectiveness as a leader</li>
+            <li>A consistent accountability structure that keeps you on track</li>
+            <li>Honest, courageous feedback that most leaders rarely receive</li>
+            <li>A healthier team culture that reflects your growth as a leader</li>
+          </ul>
+
+          <div class="best-for">
+            <strong>Best For</strong>
+            Lead pastors, executive pastors, ministry directors, and nonprofit leaders who are committed to their own growth and understand that their personal development directly impacts the people they lead.
+          </div>
+
+          <a href="contact.html" class="btn btn--primary">Start the Conversation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPARK -->
+  <section class="solution" id="spark">
+    <div class="container">
+      <div class="solution__inner">
+        <div class="solution__sidebar">
+          <span class="label">Guest Experiences</span>
+          <div class="solution__num">03</div>
+          <h2 class="solution__name">Spark</h2>
+          <div class="solution__tagline">2 Days to Gain a Fresh Perspective.</div>
+          <div class="orange-rule"></div>
+          <div class="solution__price">
+            <div class="solution__price-amount">Custom</div>
+            <ul class="solution__price-details">
+              <li>2-day immersive experience</li>
+              <li>Pricing based on group size &amp; scope</li>
+              <li>Contact us to discuss</li>
+            </ul>
+          </div>
+          <a href="contact.html" class="btn btn--primary" style="margin-top:24px;width:100%;text-align:center;">Inquire About Spark</a>
+        </div>
+
+        <div class="solution__body">
+          <p class="intro">Sometimes the most valuable thing a leader can do is get out of their current context — and into a new one.</p>
+          <p>Spark is a two-day immersive experience designed to ignite fresh thinking in your leadership team. Whether you're facing a moment of transition, stuck in a pattern that isn't working, or simply ready to see new possibilities — Spark gives your team the perspective shift they need to move forward with renewed clarity and energy.</p>
+
+          <h3>What to Expect</h3>
+          <p>Two intensive days of facilitated discovery, honest conversation, and practical tools — away from the noise and the day-to-day grind. You and your leadership team will engage deeply, ask hard questions, and leave with new language, fresh perspective, and an immediate action plan you can put to work the moment you return.</p>
+
+          <h3>What You'll Walk Away With</h3>
+          <ul class="outcomes-list">
+            <li>A renewed sense of clarity and shared vision as a team</li>
+            <li>New perspectives on your most pressing leadership challenges</li>
+            <li>Practical tools and frameworks ready to apply immediately</li>
+            <li>Re-energized team relationships and renewed mission focus</li>
+            <li>A concrete action plan for the next 90 days</li>
+          </ul>
+
+          <div class="best-for">
+            <strong>Best For</strong>
+            Senior pastors, executive teams, and leadership staff who need a breakthrough moment — especially during seasons of transition, stagnation, or pre-growth preparation.
+          </div>
+
+          <a href="contact.html" class="btn btn--primary">Inquire About Spark</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- XP ON RETAINER -->
+  <section class="solution" id="xp-retainer">
+    <div class="container">
+      <div class="solution__inner">
+        <div class="solution__sidebar">
+          <span class="label">Fractional XP as a Service</span>
+          <div class="solution__num">04</div>
+          <h2 class="solution__name">Executive Pastor<br />on Retainer</h2>
+          <div class="solution__tagline">Senior-Level Leadership. Without the Full-Time Cost.</div>
+          <div class="orange-rule"></div>
+          <div class="solution__price">
+            <div class="solution__price-amount">Custom</div>
+            <ul class="solution__price-details">
+              <li>Ongoing retainer engagement</li>
+              <li>Pricing based on scope &amp; availability</li>
+              <li>Contact us to discuss</li>
+            </ul>
+          </div>
+          <a href="contact.html" class="btn btn--primary" style="margin-top:24px;width:100%;text-align:center;">Inquire About This Solution</a>
+        </div>
+
+        <div class="solution__body">
+          <p class="intro">Not every church is in a season to hire a full-time Executive Pastor. But every thriving church needs that level of senior operational leadership.</p>
+          <p>The Executive Pastor on Retainer offering gives your church access to experienced, senior-level XP expertise on a fractional basis. Think of it as having a trusted, seasoned Executive Pastor in your corner — available to support your senior pastor, coach your staff, and help shepherd your organization's operations — without the full-time cost.</p>
+
+          <h3>What's Included</h3>
+          <ul class="outcomes-list">
+            <li>Ongoing availability for senior pastor support and strategic counsel</li>
+            <li>Staff coaching and leadership development</li>
+            <li>Operational health and systems oversight</li>
+            <li>Strategic planning guidance and execution accountability</li>
+            <li>A trusted outside voice for sensitive organizational decisions</li>
+          </ul>
+
+          <h3>Why Fractional?</h3>
+          <p>Many churches — especially those in the 200 to 800 attendance range — are at a stage where they need XP-level leadership but aren't ready (or resourced) for a full-time hire. A fractional Executive Pastor gives you the expertise, the perspective, and the relational investment of a senior leader, at a fraction of the cost.</p>
+
+          <div class="best-for">
+            <strong>Best For</strong>
+            Churches in transition (search for new staff, leadership change, rapid growth), growing churches adding staff for the first time, or senior pastors who need a trusted operational partner so they can focus on what they're called to do.
+          </div>
+
+          <a href="contact.html" class="btn btn--primary">Start the Conversation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="container">
+      <div class="cta-banner__inner">
+        <span class="label">Not Sure Where to Start?</span>
+        <div class="orange-rule orange-rule--center" style="margin-top:16px;"></div>
+        <h2>Let's Figure It Out<br />Together.</h2>
+        <p>Schedule a no-pressure discovery call. We'll listen first, then recommend the solution that's the right fit for where you are right now.</p>
+        <div class="cta-banner__btns">
+          <a href="contact.html" class="btn btn--primary">Book a Discovery Call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <div class="footer__logo">Tandem<span>Leader</span></div>
+          <p class="footer__tagline">Strengthening Leaders and Sharpening Organizations for Greater Kingdom Impact.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Solutions</h4>
+          <ul>
+            <li><a href="#whetstone">Whetstone</a></li>
+            <li><a href="#honing">Honing</a></li>
+            <li><a href="#spark">Spark</a></li>
+            <li><a href="#xp-retainer">Executive Pastor on Retainer</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Thomas</a></li>
+            <li><a href="index.html#process">Our Approach</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="https://www.linkedin.com" target="_blank">LinkedIn</a></li>
+            <li><a href="mailto:thomas@tandemleader.com">thomas@tandemleader.com</a></li>
+            <li><a href="contact.html">Book a Call</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 Tandem Leader. All rights reserved.</span>
+        <p class="footer__scripture">"Iron sharpens iron, and one man sharpens another." — Prov. 27:17</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

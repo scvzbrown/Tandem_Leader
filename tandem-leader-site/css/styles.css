@@ -1,0 +1,246 @@
+/* ============================================
+   TANDEM LEADER — SHARED STYLESHEET
+   tandemleader.com
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500;600&display=swap');
+
+/* ---- Variables ---- */
+:root {
+  --dark:    #0F1114;
+  --dark-2:  #161A1F;
+  --dark-3:  #1E2228;
+  --dark-4:  #252B33;
+  --orange:  #E8722A;
+  --orange-d:#b55820;
+  --white:   #FFFFFF;
+  --gray:    #7B8390;
+  --lgray:   #C4CAD4;
+  --border:  rgba(255,255,255,0.07);
+}
+
+/* ---- Reset ---- */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--dark);
+  color: var(--white);
+  font-family: 'Barlow', sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+/* ---- Typography ---- */
+h1, h2, h3, h4, h5 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+  color: var(--white);
+}
+.label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.78rem;
+  color: var(--orange);
+}
+.body-text { color: var(--lgray); line-height: 1.75; }
+
+/* ---- Layout ---- */
+.container { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+.section { padding: 96px 0; }
+.section--sm { padding: 64px 0; }
+.section--dark-2 { background: var(--dark-2); }
+.section--dark-3 { background: var(--dark-3); }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+
+/* ---- Divider ---- */
+.orange-rule { width: 48px; height: 3px; background: var(--orange); margin-bottom: 24px; }
+.orange-rule--center { margin-left: auto; margin-right: auto; }
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-block;
+  padding: 15px 34px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, border-color 0.2s;
+  line-height: 1;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn--primary { background: var(--orange); color: var(--white); }
+.btn--primary:hover { background: var(--orange-d); }
+.btn--outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.3); }
+.btn--outline:hover { border-color: var(--white); }
+.btn--sm { padding: 11px 24px; font-size: 0.82rem; }
+
+/* ---- Navigation ---- */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(15,17,20,0.93);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+.nav__logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 1.45rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  color: var(--white);
+}
+.nav__logo span {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  color: var(--gray);
+  margin-top: 1px;
+}
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.nav__links a {
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--lgray);
+  transition: color 0.2s;
+}
+.nav__links a:hover,
+.nav__links a.active { color: var(--white); }
+.nav__cta { margin-left: 8px !important; }
+
+/* Mobile nav toggle */
+.nav__toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav__toggle span {
+  display: block;
+  width: 24px; height: 2px;
+  background: var(--white);
+  transition: all 0.3s;
+}
+
+/* ---- Footer ---- */
+.footer {
+  background: #08090B;
+  border-top: 1px solid var(--border);
+  padding: 60px 0 36px;
+}
+.footer__top {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 28px;
+}
+.footer__logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  margin-bottom: 14px;
+}
+.footer__logo span {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  color: var(--gray);
+}
+.footer__tagline { font-size: 0.88rem; color: var(--gray); line-height: 1.65; max-width: 220px; }
+.footer__col h4 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--orange);
+  margin-bottom: 16px;
+}
+.footer__col ul { list-style: none; }
+.footer__col ul li { margin-bottom: 9px; }
+.footer__col ul li a { font-size: 0.88rem; color: var(--gray); transition: color 0.2s; }
+.footer__col ul li a:hover { color: var(--white); }
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+.footer__scripture { font-style: italic; text-align: right; line-height: 1.5; max-width: 340px; }
+
+/* ---- Page Hero (inner pages) ---- */
+.page-hero {
+  padding: 160px 0 80px;
+  background: linear-gradient(to bottom, var(--dark-2) 0%, var(--dark) 100%);
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+.page-hero h1 { font-size: clamp(3rem, 6vw, 5.5rem); margin-bottom: 20px; }
+.page-hero p { font-size: 1.1rem; color: var(--lgray); max-width: 580px; margin: 0 auto; }
+
+/* ---- CTA Banner ---- */
+.cta-banner {
+  background: var(--dark-3);
+  padding: 96px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-banner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(232,114,42,0.06) 0%, transparent 55%);
+}
+.cta-banner__inner { position: relative; z-index: 1; }
+.cta-banner h2 { font-size: clamp(2.8rem, 5vw, 4.5rem); margin-bottom: 18px; }
+.cta-banner p { color: var(--lgray); font-size: 1.05rem; max-width: 500px; margin: 0 auto 44px; }
+.cta-banner__btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .grid-2 { grid-template-columns: 1fr; gap: 40px; }
+  .nav__links { display: none; }
+  .nav__toggle { display: flex; }
+  .footer__top { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+@media (max-width: 560px) {
+  .container { padding: 0 20px; }
+  .section { padding: 64px 0; }
+  .footer__top { grid-template-columns: 1fr; }
+  .footer__bottom { flex-direction: column; gap: 12px; text-align: center; }
+  .footer__scripture { text-align: center; }
+}

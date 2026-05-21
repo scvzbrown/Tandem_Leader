@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Tandem Leader</title>
+  <meta name="description" content="Thomas Brown is the Founder & CEO of Tandem Leader — a coaching and consulting firm for church leaders and Christian nonprofits." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* ---- About Hero ---- */
+    .about-hero {
+      padding: 140px 0 80px;
+      background: linear-gradient(135deg, rgba(232,114,42,0.06) 0%, transparent 50%), var(--dark-2);
+      border-bottom: 1px solid var(--border);
+    }
+    .about-hero__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .about-hero__img {
+      aspect-ratio: 4/5;
+      background: var(--dark-3);
+      position: relative;
+      overflow: hidden;
+      display: flex; align-items: flex-end; padding: 28px;
+    }
+    .about-hero__placeholder {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #1a2030 0%, #0d1017 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 8rem; opacity: 0.08;
+    }
+    .about-hero__badge {
+      position: relative; z-index: 1;
+      background: var(--orange); padding: 16px 22px;
+    }
+    .about-hero__badge strong {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+      font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .about-hero__badge span { font-size: 0.8rem; }
+    .about-hero__content h1 { font-size: clamp(2.8rem, 5vw, 4.5rem); margin-bottom: 24px; }
+    .about-hero__content p { color: var(--lgray); font-size: 1.05rem; line-height: 1.75; margin-bottom: 16px; }
+
+    /* ---- Story Section ---- */
+    .story { max-width: 760px; margin: 0 auto; }
+    .story p { color: var(--lgray); font-size: 1.05rem; line-height: 1.85; margin-bottom: 24px; }
+    .story p.lead { font-size: 1.2rem; color: var(--white); font-style: italic; margin-bottom: 32px; }
+    .story h2 { font-size: clamp(2rem, 3.5vw, 2.8rem); margin: 48px 0 20px; }
+
+    /* ---- Scripture Pull ---- */
+    .scripture-pull {
+      background: var(--dark-3);
+      border-left: 4px solid var(--orange);
+      padding: 32px 36px;
+      margin: 44px 0;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--white);
+      line-height: 1.65;
+    }
+    .scripture-pull cite {
+      display: block; margin-top: 12px;
+      font-style: normal; font-size: 0.82rem;
+      color: var(--orange);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    }
+
+    /* ---- Signature ---- */
+    .signature {
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
+      margin-top: 40px;
+    }
+    .signature__name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: 1.3rem;
+      text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    .signature__title { font-size: 0.88rem; color: var(--gray); margin-top: 4px; }
+
+    /* ---- Purpose Block ---- */
+    .purpose-block {
+      background: var(--dark-3);
+      padding: 64px;
+      text-align: center;
+      border-top: 3px solid var(--orange);
+    }
+    .purpose-block h2 { font-size: clamp(2.2rem, 4vw, 3.5rem); margin-bottom: 24px; }
+    .purpose-block .purpose-stmt {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: clamp(1.6rem, 3vw, 2.4rem);
+      text-transform: uppercase; letter-spacing: 0.04em;
+      color: var(--orange); margin-bottom: 36px; line-height: 1.2;
+    }
+    .beliefs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; margin-top: 48px; text-align: left; }
+    .belief-item { background: var(--dark-4); padding: 32px 28px; }
+    .belief-item h3 { font-size: 1.15rem; margin-bottom: 10px; }
+    .belief-item p { font-size: 0.9rem; color: var(--lgray); line-height: 1.65; margin: 0; }
+
+    @media (max-width: 900px) {
+      .about-hero__inner { grid-template-columns: 1fr; gap: 40px; }
+      .purpose-block { padding: 40px 24px; }
+      .beliefs { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo">Tandem<span>Leader</span></a>
+        <div class="nav__links">
+          <a href="solutions.html">Solutions</a>
+          <a href="resources.html">Resources</a>
+          <a href="about.html" class="active">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="contact.html" class="btn btn--primary btn--sm nav__cta">Start the Conversation</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ABOUT HERO -->
+  <section class="about-hero">
+    <div class="container">
+      <div class="about-hero__inner">
+        <div class="about-hero__img">
+          <img src="images/Thomas Brown-0094.jpeg" alt="Thomas Brown, Founder & CEO of Tandem Leader" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;" />
+          <div class="about-hero__badge">
+            <strong>Thomas Brown</strong>
+            <span>Founder &amp; CEO, Tandem Leader</span>
+          </div>
+        </div>
+        <div class="about-hero__content">
+          <span class="label">Our Story</span>
+          <div class="orange-rule" style="margin-top:16px;"></div>
+          <h1>A Person of Influence.<br />Redirected by Grace.</h1>
+          <p>Early in his life, Thomas Brown recognized something about himself: he was a person of influence. The problem was that he was a bad influence — until an encounter with Jesus changed everything.</p>
+          <p>That transformation didn't erase the drive or the capacity for influence. It redirected it. And that's the story behind Tandem Leader.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="section">
+    <div class="container">
+      <div class="story">
+        <p class="lead">The market and ministry experience I've been blessed with provides a perspective to help ministry leaders grow and thrive.</p>
+
+        <p>Over the years, as Thomas accumulated experience in the marketplace and in ministry, a calling became clear: to help church leaders lead better — not just more efficiently, but more faithfully, more effectively, and with greater Kingdom impact.</p>
+
+        <p>The challenge most church leaders face isn't passion. It isn't calling. It isn't even resources. It's alignment. It's operational clarity. It's the gap between a God-given vision and the practical ability to execute on it. Thomas has seen this pattern repeat itself across churches and Christian nonprofits of every size and denomination.</p>
+
+        <div class="scripture-pull">
+          "If the iron is blunt, and one does not sharpen the edge, he must use more strength, but wisdom helps one to succeed."
+          <cite>Ecclesiastes 10:10</cite>
+        </div>
+
+        <p>Sharp leaders are more effective than dull ones. That's not just common sense — it's biblical truth. And it's the conviction at the core of everything Tandem Leader does.</p>
+
+        <h2>The Conviction That Started It All</h2>
+        <p>Thriving churches begin with sharp leadership. And sharp leadership doesn't happen by accident — it's the result of intentional growth, honest feedback, and a willingness to be challenged. Too many gifted leaders are operating without the tools, the outside perspective, or the accountability structures they need to lead at their best.</p>
+
+        <p>Tandem Leader exists to change that. Every solution we offer — from our 12-month Whetstone organizational engagement to individual Honing coaching relationships — is designed to sharpen leaders and strengthen organizations so the local church can do what it was put on this earth to do.</p>
+
+        <h2>Why "Tandem"?</h2>
+        <p>A tandem is two things working together — in sync, in step, with shared purpose and direction. That's exactly what Tandem Leader is about: walking alongside leaders and organizations not as outside experts dispensing advice, but as genuine partners committed to the same goal. Your flourishing. Your team's health. And Greater Kingdom Impact.</p>
+
+        <div class="scripture-pull">
+          "Iron sharpens iron, and one man sharpens another."
+          <cite>Proverbs 27:17</cite>
+        </div>
+
+        <p>We are Servant Leaders who are Courageously Honest. We are committed to Transformational Growth and Biblical Wisdom as we Sharpen Leaders everyday. That's not just a tagline — it's a standard we hold ourselves to in every client engagement.</p>
+
+        <div class="signature">
+          <div class="signature__name">Thomas Brown</div>
+          <div class="signature__title">Founder &amp; CEO, Tandem Leader</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PURPOSE BLOCK -->
+  <section class="section section--dark-2" style="padding:0;">
+    <div class="purpose-block">
+      <div class="container">
+        <span class="label">Our Deeply Held Purpose</span>
+        <div class="orange-rule orange-rule--center" style="margin-top:16px;"></div>
+        <h2>What Drives Everything<br />We Do</h2>
+        <p class="purpose-stmt">Strengthen Leaders and Sharpen Organizations<br />for Greater Kingdom Impact.</p>
+
+        <div class="beliefs">
+          <div class="belief-item">
+            <h3>We Are Servant Leaders</h3>
+            <p>We lead by serving first. Our clients' growth and Kingdom impact is the mission — not our platform or our accolades. Every engagement begins with listening and ends with your flourishing.</p>
+          </div>
+          <div class="belief-item">
+            <h3>We Are Courageously Honest</h3>
+            <p>We say the hard things with grace. Real growth requires honest diagnosis — even when the conversation is uncomfortable. We won't tell you what you want to hear at the expense of what you need to hear.</p>
+          </div>
+          <div class="belief-item">
+            <h3>We Pursue Transformational Growth</h3>
+            <p>We're not interested in marginal improvement. We pursue lasting, measurable transformation in leaders and organizations — the kind that changes your team culture and compounds over time.</p>
+          </div>
+          <div class="belief-item">
+            <h3>We Are Rooted in Biblical Wisdom</h3>
+            <p>God's Word is our foundation. Every strategy, framework, and principle we bring is filtered through Biblical truth. We don't separate the organizational from the spiritual — they're inseparable.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="container">
+      <div class="cta-banner__inner">
+        <span class="label">Ready to Get Started?</span>
+        <div class="orange-rule orange-rule--center" style="margin-top:16px;"></div>
+        <h2>Let's Strengthen<br />Your Leadership.</h2>
+        <p>Schedule a no-pressure discovery call. We'll listen first, then determine together if Tandem Leader is the right fit for your church or nonprofit.</p>
+        <div class="cta-banner__btns">
+          <a href="contact.html" class="btn btn--primary">Book a Discovery Call</a>
+          <a href="solutions.html" class="btn btn--outline">See Our Solutions</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <div class="footer__logo">Tandem<span>Leader</span></div>
+          <p class="footer__tagline">Strengthening Leaders and Sharpening Organizations for Greater Kingdom Impact.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Solutions</h4>
+          <ul>
+            <li><a href="solutions.html#whetstone">Whetstone</a></li>
+            <li><a href="solutions.html#honing">Honing</a></li>
+            <li><a href="solutions.html#spark">Spark</a></li>
+            <li><a href="solutions.html#xp-retainer">Executive Pastor on Retainer</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Thomas</a></li>
+            <li><a href="index.html#process">Our Approach</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="https://www.linkedin.com" target="_blank">LinkedIn</a></li>
+            <li><a href="mailto:thomas@tandemleader.com">thomas@tandemleader.com</a></li>
+            <li><a href="contact.html">Book a Call</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 Tandem Leader. All rights reserved.</span>
+        <p class="footer__scripture">"Iron sharpens iron, and one man sharpens another." — Prov. 27:17</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

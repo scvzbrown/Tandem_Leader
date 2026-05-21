@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Tandem Leader</title>
+  <meta name="description" content="Book a discovery call with Tandem Leader. No pressure — just a conversation about where you are and where you want to go." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* ---- Contact Layout ---- */
+    .contact-wrap {
+      padding: 140px 0 96px;
+    }
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    /* ---- Left Column ---- */
+    .contact-info h1 { font-size: clamp(3rem, 5vw, 4.5rem); margin-bottom: 20px; }
+    .contact-info > p { color: var(--lgray); font-size: 1.05rem; line-height: 1.75; margin-bottom: 36px; }
+
+    .contact-detail { margin-bottom: 36px; }
+    .contact-detail__label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 0.72rem; text-transform: uppercase;
+      letter-spacing: 0.16em; color: var(--orange); margin-bottom: 6px;
+    }
+    .contact-detail__value { font-size: 1rem; color: var(--white); }
+    .contact-detail__value a { color: var(--lgray); transition: color 0.2s; }
+    .contact-detail__value a:hover { color: var(--white); }
+
+    .what-to-expect {
+      background: var(--dark-3);
+      border-top: 3px solid var(--orange);
+      padding: 28px 28px;
+      margin-top: 36px;
+    }
+    .what-to-expect h3 { font-size: 1.2rem; margin-bottom: 14px; }
+    .expect-list { list-style: none; }
+    .expect-list li {
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--lgray);
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .expect-list li:last-child { border-bottom: none; }
+    .expect-list li::before { content: '✓'; color: var(--orange); font-weight: 700; flex-shrink: 0; }
+
+    /* ---- Form ---- */
+    .contact-form-wrap {
+      background: var(--dark-2);
+      padding: 44px 40px;
+      border-top: 3px solid var(--orange);
+    }
+    .contact-form-wrap h2 { font-size: 1.8rem; margin-bottom: 8px; }
+    .contact-form-wrap > p { font-size: 0.9rem; color: var(--lgray); margin-bottom: 32px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 0.72rem;
+      text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--lgray); margin-bottom: 7px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: var(--dark-3);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--white);
+      padding: 12px 16px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+      outline: none;
+      appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--orange);
+    }
+    .form-group select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23E8722A' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
+    .form-group textarea { resize: vertical; min-height: 130px; }
+
+    .form-note {
+      font-size: 0.8rem; color: var(--gray); margin-bottom: 20px;
+      font-style: italic;
+    }
+    .form-submit .btn { width: 100%; text-align: center; padding: 17px; font-size: 1rem; }
+
+    /* ---- Success Message (hidden by default) ---- */
+    .form-success {
+      display: none;
+      background: var(--dark-3);
+      border: 1px solid var(--orange);
+      padding: 28px;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .form-success h3 { color: var(--orange); margin-bottom: 10px; }
+    .form-success p { color: var(--lgray); font-size: 0.95rem; }
+
+    @media (max-width: 900px) {
+      .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-form-wrap { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo">Tandem<span>Leader</span></a>
+        <div class="nav__links">
+          <a href="solutions.html">Solutions</a>
+          <a href="resources.html">Resources</a>
+          <a href="about.html">About</a>
+          <a href="contact.html" class="active">Contact</a>
+          <a href="contact.html" class="btn btn--primary btn--sm nav__cta">Start the Conversation</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTACT SECTION -->
+  <section class="contact-wrap">
+    <div class="container">
+      <div class="contact-inner">
+
+        <!-- LEFT: Info -->
+        <div class="contact-info">
+          <span class="label">Let's Connect</span>
+          <div class="orange-rule" style="margin-top:16px;"></div>
+          <h1>Let's Talk.</h1>
+          <p>No pressure. No pitch. Just a conversation about where you are, what you're facing, and where you want to go. If we're a good fit, we'll tell you. If we're not, we'll tell you that too.</p>
+
+          <div class="contact-detail">
+            <div class="contact-detail__label">Email</div>
+            <div class="contact-detail__value">
+              <a href="mailto:thomas@tandemleader.com">thomas@tandemleader.com</a>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-detail__label">Website</div>
+            <div class="contact-detail__value">
+              <a href="https://tandemleader.com">tandemleader.com</a>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-detail__label">Response Time</div>
+            <div class="contact-detail__value" style="color:var(--lgray);">We typically respond within one business day. All conversations are confidential.</div>
+          </div>
+
+          <div class="what-to-expect">
+            <h3>What to Expect</h3>
+            <ul class="expect-list">
+              <li>A real conversation — no scripts, no sales pressure</li>
+              <li>We listen first, then respond to what we hear</li>
+              <li>Honest assessment of whether we're the right fit</li>
+              <li>A clear next step, whatever that looks like</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- RIGHT: Form -->
+        <div class="contact-form-wrap">
+          <h2>Send a Message</h2>
+          <p>Fill out the form below and Thomas will be in touch within one business day.</p>
+
+          <!-- Netlify Forms: the "netlify" attribute enables automatic form handling -->
+          <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact" />
+            <!-- Honeypot spam prevention -->
+            <div style="display:none;">
+              <label>Don't fill this out: <input name="bot-field" /></label>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="first-name">First Name *</label>
+                <input type="text" id="first-name" name="first-name" required placeholder="Thomas" />
+              </div>
+              <div class="form-group">
+                <label for="last-name">Last Name *</label>
+                <input type="text" id="last-name" name="last-name" required placeholder="Brown" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required placeholder="you@yourchurch.com" />
+            </div>
+
+            <div class="form-group">
+              <label for="church">Church / Organization *</label>
+              <input type="text" id="church" name="church" required placeholder="Grace Community Church" />
+            </div>
+
+            <div class="form-group">
+              <label for="role">Your Role / Title *</label>
+              <input type="text" id="role" name="role" required placeholder="Lead Pastor, Executive Director, etc." />
+            </div>
+
+            <div class="form-group">
+              <label for="interest">What are you most interested in?</label>
+              <select id="interest" name="interest">
+                <option value="" disabled selected>Select an option</option>
+                <option value="whetstone">Whetstone — Operational Fundamentals</option>
+                <option value="honing">Honing — Leadership Coaching</option>
+                <option value="spark">Spark — Guest Experiences</option>
+                <option value="xp-retainer">Executive Pastor on Retainer</option>
+                <option value="not-sure">Not sure yet — I'd like to talk it through</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Tell us a little about where you are right now *</label>
+              <textarea id="message" name="message" required placeholder="What's the biggest challenge your leadership team is facing? What would success look like for you over the next 12 months?"></textarea>
+            </div>
+
+            <p class="form-note">All responses are confidential. We typically follow up within one business day.</p>
+
+            <div class="form-submit">
+              <button type="submit" class="btn btn--primary">Send Message →</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- BELIEF STRIP -->
+  <div class="belief-strip" style="font-size:0.85rem;">
+    We Are Servant Leaders &nbsp;·&nbsp; Courageously Honest &nbsp;·&nbsp; Committed to Transformational Growth &nbsp;·&nbsp; Rooted in Biblical Wisdom
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <div class="footer__logo">Tandem<span>Leader</span></div>
+          <p class="footer__tagline">Strengthening Leaders and Sharpening Organizations for Greater Kingdom Impact.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Solutions</h4>
+          <ul>
+            <li><a href="solutions.html#whetstone">Whetstone</a></li>
+            <li><a href="solutions.html#honing">Honing</a></li>
+            <li><a href="solutions.html#spark">Spark</a></li>
+            <li><a href="solutions.html#xp-retainer">Executive Pastor on Retainer</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Thomas</a></li>
+            <li><a href="index.html#process">Our Approach</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="https://www.linkedin.com" target="_blank">LinkedIn</a></li>
+            <li><a href="mailto:thomas@tandemleader.com">thomas@tandemleader.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 Tandem Leader. All rights reserved.</span>
+        <p class="footer__scripture">"Iron sharpens iron, and one man sharpens another." — Prov. 27:17</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
